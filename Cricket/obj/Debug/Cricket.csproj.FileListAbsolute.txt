@@ -1,0 +1,7 @@
+C:\Users\Dell\Documents\Cricket\Cricket\bin\Debug\Cricket.exe.config
+C:\Users\Dell\Documents\Cricket\Cricket\bin\Debug\Cricket.exe
+C:\Users\Dell\Documents\Cricket\Cricket\bin\Debug\Cricket.pdb
+C:\Users\Dell\Documents\Cricket\Cricket\obj\Debug\Cricket.csproj.AssemblyReference.cache
+C:\Users\Dell\Documents\Cricket\Cricket\obj\Debug\Cricket.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\Cricket\Cricket\obj\Debug\Cricket.exe
+C:\Users\Dell\Documents\Cricket\Cricket\obj\Debug\Cricket.pdb

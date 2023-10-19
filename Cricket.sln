@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cricket", "Cricket\Cricket.csproj", "{12311F09-C481-44C8-BCD4-9DCF33CEB74A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CricketClasses_2", "CricketClasses_2\CricketClasses_2.csproj", "{9F5D8582-B9FE-4005-B0E5-3566B90C3412}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12311F09-C481-44C8-BCD4-9DCF33CEB74A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12311F09-C481-44C8-BCD4-9DCF33CEB74A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12311F09-C481-44C8-BCD4-9DCF33CEB74A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12311F09-C481-44C8-BCD4-9DCF33CEB74A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F5D8582-B9FE-4005-B0E5-3566B90C3412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F5D8582-B9FE-4005-B0E5-3566B90C3412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F5D8582-B9FE-4005-B0E5-3566B90C3412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F5D8582-B9FE-4005-B0E5-3566B90C3412}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B2EE4A7-B19A-459C-AA1E-A6993C2C2B2A}
+	EndGlobalSection
+EndGlobal
