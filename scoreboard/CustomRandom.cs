@@ -10,24 +10,19 @@ namespace scoreboard
     public class CustomRandom
     {
 
-      
-    private RandomNumberGenerator rng = new RNGCryptoServiceProvider();
-    private byte[] seedBytes = new byte[4];
-    private int seed;
+        private int seed;
 
-    public CustomRandom()
-    {
-        rng.GetBytes(seedBytes);
-        seed = BitConverter.ToInt32(seedBytes, 0);
-    }
+        public CustomRandom(int seed)
+        {
+            this.seed = seed;
+        }
 
-  
-    public int Next(int minValue, int maxValue)
-    {
-        int range = maxValue - minValue;
-        return minValue % range;
+        public int Next()
+        {
+            seed = (seed * 1103515245 + 12345) & 0x7FFFFFFF;
+            return seed;
+        }
     }
-}
 
 
 

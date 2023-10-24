@@ -26,10 +26,11 @@ namespace scoreboard
         public void Startgame()
         { 
             Console.WriteLine("innings " + innings + " is starting");
+            int total = overs;
 
             while (overs != 0)
             {
-                Console.WriteLine("next over is " + overs);
+                Console.WriteLine("next over is " + (total-overs+1));
                 Game game = new Game();
                 string bat1 = "sheona";
                 string bat2 = "faiza";

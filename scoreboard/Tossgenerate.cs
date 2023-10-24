@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace scoreboard
 {
-    internal class Tossgenerate
+    internal class TossGenerate
     {
 
 
@@ -15,7 +15,7 @@ namespace scoreboard
         public string team1;
         public string team2, bowl, bat;
 
-        public Tossgenerate(string team1, string team2)
+        public TossGenerate(string team1, string team2)
         {
             this.team1 = team1;
             this.team2 = team2;

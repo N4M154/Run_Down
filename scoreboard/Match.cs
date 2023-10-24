@@ -18,9 +18,9 @@ namespace scoreboard
         string team1, team2;
         string Type;
 
-        public Match(string bat, string bowl, string type) {
-            this.bat = bat;
-            this.bowl = bowl;
+        public Match(string team1, string team2, string type) {
+            this.team1 = team1;
+            this.team2 = team2;
             Type = type;
 
 
@@ -35,6 +35,7 @@ namespace scoreboard
 
             else
             {
+                Console.WriteLine("number of overs?");
                 overs = Convert.ToInt32(Console.ReadLine());
             }
 
@@ -46,15 +47,17 @@ namespace scoreboard
         public void Start()
         {
 
-            Team teams = new Team(team1, team2);
+            TossGenerate teams = new TossGenerate(team1, team2);
 
 
             bat = teams.Toss();
             bowl = teams.remain();
 
 
-            Console.WriteLine("first team to bat will be " + bat + " and bowl will be " + bowl);
+            Console.WriteLine($"first team to bat will be {bat} and bowl will be {bowl}");
 
+            Console.WriteLine($"Press any key to start");
+            Console.ReadKey();
 
 
             Innings innings1 = new Innings(bat, bowl, overs, 1);
