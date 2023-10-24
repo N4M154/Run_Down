@@ -9,16 +9,34 @@ namespace Toss
      class Custom
     {
         private int RanValue;
-        public Custom(int initialSeed)
+        public Custom(int r)
         {
-            RanValue = initialSeed;
+            RanValue = (int)DateTime.Now.Ticks; 
+            // Initialize the seed with the current timestamp.
         }
+    
 
         public int Next()
         {
 
+
+            // Update the seed with the current timestamp (in milliseconds).
+            RanValue = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
             RanValue = (RanValue * 1664525 + 1013904223) % int.MaxValue;
             return RanValue;
+
+
+
+
+
+
+
+
+
+
+
+            //RanValue = (RanValue * 1664525 + 1013904223) % int.MaxValue;
+           // return RanValue;
         }
 
 
