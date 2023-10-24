@@ -1,0 +1,14 @@
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\bin\Debug\net7.0\FinalOutput.exe
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\bin\Debug\net7.0\FinalOutput.deps.json
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\bin\Debug\net7.0\FinalOutput.runtimeconfig.json
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\bin\Debug\net7.0\FinalOutput.dll
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\bin\Debug\net7.0\FinalOutput.pdb
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.AssemblyInfo.cs
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.dll
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\refint\FinalOutput.dll
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.pdb
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\FinalOutput.genruntimeconfig.cache
+C:\Users\Dell\Documents\FinalOutput\FinalOutput\obj\Debug\net7.0\ref\FinalOutput.dll
