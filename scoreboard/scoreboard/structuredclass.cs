@@ -42,7 +42,7 @@ namespace scoreboard
                 Console.WriteLine((!IsBatsman1Striker ? "*" : "") + Batsman2.Name + ": " + Batsman2.Runs);
                 Console.WriteLine("________________________________________________________________________________________");
 
-                if (innings == 2 && Runs > targets || Wickets == 4)
+                if (innings == 2 && Runs > targets)
                 {
                     return Runs;
                 }
@@ -79,6 +79,8 @@ namespace scoreboard
                 else if (RunsScored >= 0 && RunsScored <= 6)
                 {
                     Runs += RunsScored;
+                    
+
 
                     if (IsBatsman1Striker)
                     {
@@ -117,7 +119,12 @@ namespace scoreboard
                 }
 
 
-              
+                if (innings == 2 && Runs > targets)
+                {
+                    return Runs;
+                }
+
+
             }
 
 

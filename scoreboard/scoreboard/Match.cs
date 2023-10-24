@@ -79,16 +79,16 @@ namespace scoreboard
             string result = "Match Draw";
             if (Score == target)
             {
-                result = $"draw!";
+                result = $"match draw!";
             }
             else if (Score > target)
             {
-                result = $"{bat} wins!";
+                result = $"team {bat} wins!";
             }
 
             else if (Score < target)
             {
-                result = $"{bowl} wins!";
+                result = $"team {bowl} wins!";
             }
             Console.WriteLine(result);
 
