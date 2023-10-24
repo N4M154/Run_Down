@@ -63,7 +63,10 @@ namespace scoreboard
             Innings innings1 = new Innings(bat, bowl, overs, 1);
             innings1.Startgame();
 
-            Innings innings2 = new Innings(bowl, bat, overs, 2);
+            string temp = bat;
+            bat = bowl;
+            bowl = temp;
+            Innings innings2 = new Innings(bat, bowl, overs, 2);
             innings2.Startgame();
 
          
