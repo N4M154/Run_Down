@@ -9,8 +9,7 @@ namespace scoreboard
     public class Game
     {
 
-        public string batsman1;
-        public string batsman2;
+        public string bat1, bat2;
         public string bowl;
         public int run;
         public int overstart(string bat, string bat2) {

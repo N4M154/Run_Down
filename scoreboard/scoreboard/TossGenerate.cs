@@ -27,15 +27,15 @@ namespace scoreboard
         {
 
 
-            Console.WriteLine("for team 1, if win, bat or bowl?");
+            Console.WriteLine($"for {team1}, if win, bat or bowl?");
 
             string response1 = Console.ReadLine();
 
-            Console.WriteLine("for team 2, if win, bat or bowl?");
+            Console.WriteLine($"for {team2}, if win, bat or bowl?");
 
             string response2 = Console.ReadLine();
 
-            Console.WriteLine("TEAM1, Heads or Tails?");
+            Console.WriteLine($"{team1}, Heads or Tails?");
 
 
             string probabilityPerson1 = Console.ReadLine();
