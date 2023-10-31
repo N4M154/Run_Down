@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+
 namespace scoreboard
 {
    
@@ -42,7 +42,7 @@ namespace scoreboard
                 Console.WriteLine((!IsBatsman1Striker ? "*" : "") + Batsman2.Name + ": " + Batsman2.Runs);
                 Console.WriteLine("________________________________________________________________________________________");
 
-                if (innings == 2 && Runs > targets)
+                if (innings == 2 && Runs >= targets)
                 {
                     return Runs;
                 }
@@ -76,6 +76,17 @@ namespace scoreboard
 
                     Balls = 0;
                     BallsInOver++;
+                    if (BallsInOver == 6)
+                    {
+                        BallsInOver = 0;
+                        IsBatsman1Striker = !IsBatsman1Striker;
+                        Overs++;
+
+                        // Display the score at the end of each over
+                        Console.WriteLine("\nEnd of Over " + Overs + ": " + Runs + "/" + Wickets+ " runrate: "+ Runs/Overs+"\n");
+
+                        // Change striker at the end of the over
+                    }
                 }
                 else if (RunsScored >= 0 && RunsScored <= 6)
                 {
@@ -107,7 +118,7 @@ namespace scoreboard
                         Overs++;
 
                         // Display the score at the end of each over
-                        Console.WriteLine("End of Over " + Overs + ": " + Runs + "/" + Wickets);
+                        Console.WriteLine("End of Over " + Overs + ": " + Runs + "/" + Wickets + " runrate: " + Runs / Overs);
 
                         // Change striker at the end of the over
                     }

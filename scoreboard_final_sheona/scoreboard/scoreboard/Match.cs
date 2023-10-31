@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace scoreboard
 {
@@ -83,7 +80,7 @@ namespace scoreboard
              Score=innings2.Startgame(bat, bowl, overs, 2, target);
 
             string result = "Match Draw";
-            if (Score == target)
+            if (Score == target-1)
             {
                 result = $"match draw!";
             }
@@ -92,7 +89,7 @@ namespace scoreboard
                 result = $"team {bat} wins!";
             }
 
-            else if (Score < target)
+            else if (Score <= target)
             {
                 result = $"team {bowl} wins!";
             }
