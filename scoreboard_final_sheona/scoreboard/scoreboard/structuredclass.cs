@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace scoreboard
 {
-   
+
 
     public class structuredclass
     {
+        
+        public Team team=new Team();
         public double over;
         public structuredclass(double over)
         {
+
             this.over = over;
         }
+        //public structuredclass(Team team) { this.team = team; }
+        
         public int TheFunction(string battingTeam, string bowlingTeam, double overs, int innings, int target)
         {
             Batsman Batsman1, Batsman2, NewBatsman;
@@ -24,13 +30,21 @@ namespace scoreboard
             int inning = innings;
             int targets=target;
 
-            Console.WriteLine("Enter the name of batsman 1: ");
-            Batsman1 = new Batsman(Console.ReadLine());
 
-            Console.WriteLine("Enter the name of batsman 2: ");
-            Batsman2 = new Batsman(Console.ReadLine());
 
-            Console.WriteLine("\n");
+            string[] batsmanList = team.GetPlayerList(battingTeam);
+            string[] bowlerList = team.GetPlayerList(bowlingTeam);
+
+            // Choose the first two batsmen automatically
+            Batsman1 = new Batsman(batsmanList[0]);
+            Batsman2 = new Batsman(batsmanList[1]);
+            /* Console.WriteLine("Enter the name of batsman 1: ");
+             Batsman1 = new Batsman(Console.ReadLine());
+
+             Console.WriteLine("Enter the name of batsman 2: ");
+             Batsman2 = new Batsman(Console.ReadLine());
+
+             Console.WriteLine("\n");*/
 
             while (Overs < over && Wickets < 4) // 3 overs + 4 wickets
             {
@@ -40,6 +54,7 @@ namespace scoreboard
                 Console.WriteLine("Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver + "");
                 Console.WriteLine((IsBatsman1Striker ? "*" : "") + Batsman1.Name + ": " + Batsman1.Runs);
                 Console.WriteLine((!IsBatsman1Striker ? "*" : "") + Batsman2.Name + ": " + Batsman2.Runs);
+               
                 Console.WriteLine("________________________________________________________________________________________");
 
                 if (innings == 2 && Runs >= targets)
@@ -144,8 +159,10 @@ namespace scoreboard
             // Display the final score
             Console.WriteLine("Final Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver);
             return Runs;
+            
 
-          
+
         }
+       
     }
 }

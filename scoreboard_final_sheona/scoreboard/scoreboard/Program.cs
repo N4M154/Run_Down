@@ -29,7 +29,7 @@ namespace scoreboard
             Console.WriteLine("Enter match type(ODI, t20 or a shortmatch)");
             type = Console.ReadLine();
 
-            Console.WriteLine("Enter team names");
+            
             List<string> teamNames = LoadTeamNamesFromFile("teamnames.txt");
 
             if (teamNames.Count < 2)
@@ -41,7 +41,7 @@ namespace scoreboard
             Console.WriteLine("Select team 1 from the list:");
             for (int i = 0; i < teamNames.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {teamNames[i]}");
+                Console.WriteLine($"{i + 1}.{teamNames[i]}");
             }
 
             int selectedTeam1Index = GetSelectedTeamIndex(teamNames.Count);
@@ -60,15 +60,6 @@ namespace scoreboard
             int selectedTeam2Index = GetSelectedTeamIndex(teamNames.Count);
             team2 = teamNames[selectedTeam2Index];
 
-
-
-
-            /*Console.Write("team 1: ");
-            team1 = Console.ReadLine();
-
-
-            Console.Write("team 2: ");
-            team2 = Console.ReadLine();*/
 
             Prediction prediction = new Prediction(team1, team2);
 
