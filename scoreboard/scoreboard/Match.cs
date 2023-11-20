@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+
 
 namespace scoreboard
 {
@@ -14,14 +12,19 @@ namespace scoreboard
         public string bat;
         public string bowl;
         public double overs;
-        public int innings;
-        string team1, team2;
+        public int innings=1;
+        string team1;
+        string team2;
         string Type;
+      
+        Team team;
 
         public Match(string team1, string team2, string type) {
             this.team1 = team1;
             this.team2 = team2;
             Type = type;
+            team = new Team();
+            
 
 
             if (Type == "ODI")
@@ -40,23 +43,30 @@ namespace scoreboard
                 overs = Convert.ToInt32(input);
                     
             }
-
-
+            
         }
-
-
 
         public void Start()
         {
 
             TossGenerate teams = new TossGenerate(team1, team2);
 
-
             bat = teams.Toss();
             bowl = teams.remain();
 
 
-            Console.WriteLine($"first team to bat will be {bat} and bowl will be {bowl}");
+            Console.WriteLine($"\nFirst team to bat will be {bat} and bowl will be {bowl}.\n");
+            
+            Console.WriteLine($"Inning {this.innings} is starting.\n");
+           
+            team.DisplayPlayerList(bat);
+            Console.WriteLine("\t\t");
+            team.DisplayPlayerList(bowl);
+            Console.WriteLine($"The batsmen of {bat} are: ");
+            
+            
+
+
 
 
             int target = 0;
@@ -70,14 +80,17 @@ namespace scoreboard
             string temp = bat;
             bat = bowl;
             bowl = temp;
+            innings++;
+            
+            /*Console.WriteLine($"\nInning {innings} is starting.\n");
+            Console.WriteLine($"For team {bat} the batsmen are: ");*/
 
-            Console.WriteLine($"For team {bat} the batsmen are: ");
 
             Innings innings2 = new Innings(bat, bowl, overs, 2, target);
              Score=innings2.Startgame(bat, bowl, overs, 2, target);
 
             string result = "Match Draw";
-            if (Score == target)
+            if (Score == target-1)
             {
                 result = $"match draw!";
             }
@@ -86,7 +99,7 @@ namespace scoreboard
                 result = $"team {bat} wins!";
             }
 
-            else if (Score < target)
+            else if (Score <= target)
             {
                 result = $"team {bowl} wins!";
             }

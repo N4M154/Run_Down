@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using System;
 
 namespace scoreboard
 {
@@ -26,15 +23,15 @@ namespace scoreboard
        
         public int Startgame(string bat, string bowl, double overs, int innings, int target)
         {   
-            
-            Console.WriteLine("innings " + innings + " is starting");
-           
-
             structuredclass inningsObj = new structuredclass(overs);
             int runs = inningsObj.TheFunction(bat, bowl, overs, innings, target);
 
+            //Console.WriteLine("innings " + innings + " is starting");
+
             // Update the total score based on the innings result
             Score += runs;
+           
+            //Console.WriteLine("Total Runrate of the team is " + Convert.ToDouble(Score / overs));
 
             return Score;
 

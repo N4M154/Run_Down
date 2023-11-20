@@ -1,70 +1,84 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
+
 
 namespace scoreboard
 {
     public class Program
     {
+
+        /*
         static double PredictWinPercentage(double teamStrength1, double teamStrength2, double form1, double form2, double pitchFactor)
         {
+            Random random = new Random();
+
+            // Introduce a random factor between 0.95 and 1.05 to simulate unpredictability
+            double randomFactor = random.NextDouble() * 0.1 + 0.95;
+
             double totalStrength = teamStrength1 + teamStrength2;
             double team1Contribution = (teamStrength1 * form1 + teamStrength2 * form2) / totalStrength;
             double team2Contribution = (teamStrength1 * form2 + teamStrength2 * form1) / totalStrength;
-            double winningProbability = (team1Contribution + pitchFactor) / (team1Contribution + team2Contribution + pitchFactor);
+
+            // Include the random factor in the winning probability calculation
+            double winningProbability = (team1Contribution + pitchFactor * randomFactor) / (team1Contribution + team2Contribution + pitchFactor * randomFactor);
+
             return winningProbability * 100;
         }
+
+        */
+
         static void Main(string[] args)
         {
-            
-
 
             string type;
 
-            string team1, team2;
+            string team1;
+
+            string team2;
 
 
-            Console.WriteLine("Enter match type(ODI, t20 or limited)");
-            type = Console.ReadLine();
-
-            Console.WriteLine("Enter team names");
-
-
-            Console.Write("team 1: ");
-            team1= Console.ReadLine();
+            Console.WriteLine("Enter match type(ODI, t20 or a shortmatch)");
+            
+            
+            type=matchtype.GetValidType();
 
 
-            Console.Write("team 2: ");
-            team2 = Console.ReadLine();
+            List<string> teamNames = LoadTeamNamesFromFile("teamnames.txt");
 
-            Console.Write("Enter the strength of " + team1 + ": ");
-            double teamStrength1 = double.Parse(Console.ReadLine());
+            if (teamNames.Count < 2)
+            {
+                Console.WriteLine("Error: The file should contain at least two team names.");
+                return;
+            }
 
-            Console.Write("Enter the strength of " + team2 + ": ");
-            double teamStrength2 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Select team 1 from the list:");
+            for (int i = 0; i < teamNames.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}.{teamNames[i]}");
+            }
 
-            Console.Write("Enter the current form of " + team1 + " (0 to 1): ");
-            double form1 = double.Parse(Console.ReadLine());
+            int selectedTeam1Index = GetSelectedTeamIndex(teamNames.Count);
 
-            Console.Write("Enter the current form of " + team2 + " (0 to 1): ");
-            double form2 = double.Parse(Console.ReadLine());
+            team1 = teamNames[selectedTeam1Index];
 
-            Console.Write("Enter pitch conditions factor (0 to 1, 0.5 for neutral): ");
-            double pitchFactor = double.Parse(Console.ReadLine());
+            // Remove the selected team 1 name from the list
+            teamNames.RemoveAt(selectedTeam1Index);
+
+            Console.WriteLine("Select team 2 from the remaining list:");
+            for (int i = 0; i < teamNames.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {teamNames[i]}");
+            }
+
+            int selectedTeam2Index = GetSelectedTeamIndex(teamNames.Count);
+            team2 = teamNames[selectedTeam2Index];
 
 
-            Console.WriteLine("Predicted Winning Percentage:");
-            double percentTeam1 = PredictWinPercentage(teamStrength1, teamStrength2, form1, form2, pitchFactor);
-            double percentTeam2 = 100 - percentTeam1;
+            Prediction prediction = new Prediction(team1, team2);
 
-            Console.WriteLine($"{team1}: {percentTeam1}%");
-            Console.WriteLine($"{team2}: {percentTeam2}%");
-
-
+            prediction.PredictionDisplay();
 
             Match match = new Match(team1, team2, type);
             match.Start();
@@ -74,5 +88,34 @@ namespace scoreboard
             Console.ReadKey();
 
         }
+        static List<string> LoadTeamNamesFromFile(string filePath)
+        {
+            List<string> teamNames = new List<string>();
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                teamNames.AddRange(lines);
+            }
+            return teamNames;
+            //Console.ReadKey();
+        }
+
+        static int GetSelectedTeamIndex(int maxIndex)
+        {
+            int selectedTeamIndex;
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out selectedTeamIndex) && selectedTeamIndex >= 1 && selectedTeamIndex <= maxIndex)
+                {
+                    return selectedTeamIndex - 1;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please select a valid team number.");
+                }
+            }
+            //Console.ReadKey();
+        }
+        
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace scoreboard
 {
@@ -13,7 +10,9 @@ namespace scoreboard
         public string Name { get; set; }
         public string Description { get; set; }
         public string team1;
-        public string team2, bowl, bat;
+        public string team2;
+        public string bowl;
+        public string bat;
 
         public TossGenerate(string team1, string team2)
         {
@@ -21,25 +20,114 @@ namespace scoreboard
             this.team2 = team2;
 
         }
+        private string GetValidChoice(string team)
+        {
+            string choice;
+            
+            bool isValidInput = false;
+
+            do
+            {
+              
+                choice = Console.ReadLine().ToLower();
 
 
+                // Convert to lowercase for case-insensitive comparison
+                //whatever casing, code will reform it to heads or tails tp avoid any error
+
+
+                try
+                {
+                    // Check if the input is either "bat" or "bowl"
+                    if (choice != "bat" && choice != "bowl")
+                    {
+                        throw new ArgumentException("Invalid input. Please enter 'bat' or 'bowl'.");
+                    }
+
+                    isValidInput = true;
+                }
+
+
+
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            } 
+            
+            
+            while (!isValidInput);
+
+            return choice;
+        }
+
+        private string GetValidHeadortails(string team)
+        {
+            string toss;
+            bool isValidInput = false;
+
+            do
+            {
+               
+                toss = Console.ReadLine().ToLower();
+
+
+                // Convert to lowercase for case-insensitive comparison
+                //whatever casing of heads or tails, code will reform it to heads or tails tp avoid any error
+
+
+                try
+                {
+                    // Check if the input is either "bat" or "bowl"
+                    if (toss != "heads" && toss != "tails")
+                    {
+                        throw new ArgumentException("Invalid input. Please enter 'heads' or 'tails'.");
+                    }
+
+                    isValidInput = true;
+                }
+
+
+
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            } 
+            
+            while (!isValidInput);
+
+            return toss;
+        }
         public string Toss()
         {
 
 
-            Console.WriteLine($"for {team1}, if win, bat or bowl?");
+            Console.WriteLine($"For {team1}, if win, bat or bowl?");
 
-            string response1 = Console.ReadLine();
-
-            Console.WriteLine($"for {team2}, if win, bat or bowl?");
-
-            string response2 = Console.ReadLine();
-
-            Console.WriteLine($"{team1}, Heads or Tails?");
+            string response1 = GetValidChoice(team1);
 
 
-            string probabilityPerson1 = Console.ReadLine();
+            Console.WriteLine($"For {team2}, if win, bat or bowl?");
 
+
+            string response2 = GetValidChoice(team2);
+
+
+
+            Console.WriteLine($"Team {team1}, Heads or Tails?");
+
+
+            string probabilityPerson1;
+
+
+            probabilityPerson1 = GetValidHeadortails(team1);
+
+          
+
+            
 
             // Get current timestamp as the seed value
             int seed = (int)DateTime.Now.Ticks;
@@ -54,7 +142,7 @@ namespace scoreboard
             int tossResult = randomNumber % 2;
 
             // Convert the toss result to Heads or Tails
-            string result = (tossResult == 0) ? "Heads" : "Tails";
+            string result = (tossResult == 0) ? "heads" : "tails";
 
             // Output the result
             Console.WriteLine($"Toss result: {result}");

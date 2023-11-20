@@ -47,12 +47,14 @@
     <Compile Include="Game.cs" />
     <Compile Include="Innings.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="matchtype.cs" />
     <Compile Include="Prediction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="structuredclass.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="CustomRandom.cs" />
+    <Compile Include="TossException.cs" />
     <Compile Include="TossGenerate.cs" />
   </ItemGroup>
   <ItemGroup>
