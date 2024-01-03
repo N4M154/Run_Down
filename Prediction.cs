@@ -6,16 +6,16 @@ namespace scoreboard
 {
     public class Prediction
     {
-        string team1;
-        string team2;
-        double teamStrength1;
-        double teamStrength2;
-        double form1;
-        double form2;
-        double pitchFactor;
-        DateTime predictionDateTime;
-        int team1WinCount;
-        int team2WinCount;
+        private string team1;
+        private string team2;
+        private double teamStrength1;
+        private double teamStrength2;
+        private double form1;
+        private double form2;
+        private double pitchFactor;
+        private DateTime predictionDateTime;
+        private int team1WinCount;
+        private int team2WinCount;
 
         public Prediction(string team1, string team2)
         {
@@ -56,7 +56,16 @@ namespace scoreboard
             }
         }
 
-        public void RecordMatchResult(bool team1Won)
+        private void SaveTeamValuesToFile(string filePath)
+        {
+            List<string> lines = new List<string>();
+            lines.Add($"{team1},{teamStrength1},{form1},{form2},{pitchFactor},{team1WinCount},{team2WinCount},{predictionDateTime}");
+            lines.Add($"{team2},{teamStrength2},{form1},{form2},{pitchFactor},{team1WinCount},{team2WinCount},{predictionDateTime}");
+
+            File.WriteAllLines(filePath, lines);
+        }
+
+        public void UpdateMatchResult(bool team1Won)
         {
             if (team1Won)
             {
@@ -70,6 +79,18 @@ namespace scoreboard
             // Recalculate form based on historical results or other criteria if needed
             form1 = CalculateForm(team1WinCount);
             form2 = CalculateForm(team2WinCount);
+
+            // Save the updated information back to the file
+            SaveTeamValuesToFile("team_values.txt");
+        }
+
+        private static double PredictWinPercentage(double teamStrength1, double teamStrength2, double form1, double form2, double pitchFactor)
+        {
+            double totalStrength = teamStrength1 + teamStrength2;
+            double team1Contribution = (teamStrength1 * form1 + teamStrength2 * form2) / totalStrength;
+            double team2Contribution = (teamStrength1 * form2 + teamStrength2 * form1) / totalStrength;
+            double winningProbability = (team1Contribution + pitchFactor) / (team1Contribution + team2Contribution + pitchFactor);
+            return winningProbability * 100;
         }
 
         private double CalculateForm(int winCount)
@@ -89,15 +110,6 @@ namespace scoreboard
 
             Console.WriteLine($"{team1}: {percentTeam1}%");
             Console.WriteLine($"{team2}: {percentTeam2}%");
-        }
-
-        static double PredictWinPercentage(double teamStrength1, double teamStrength2, double form1, double form2, double pitchFactor)
-        {
-            double totalStrength = teamStrength1 + teamStrength2;
-            double team1Contribution = (teamStrength1 * form1 + teamStrength2 * form2) / totalStrength;
-            double team2Contribution = (teamStrength1 * form2 + teamStrength2 * form1) / totalStrength;
-            double winningProbability = (team1Contribution + pitchFactor) / (team1Contribution + team2Contribution + pitchFactor);
-            return winningProbability * 100;
         }
     }
 }
