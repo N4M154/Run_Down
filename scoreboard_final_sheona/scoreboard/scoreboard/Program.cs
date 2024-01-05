@@ -8,28 +8,43 @@ namespace scoreboard
 {
     public class Program
     {
+
+        /*
         static double PredictWinPercentage(double teamStrength1, double teamStrength2, double form1, double form2, double pitchFactor)
         {
+            Random random = new Random();
+
+            // Introduce a random factor between 0.95 and 1.05 to simulate unpredictability
+            double randomFactor = random.NextDouble() * 0.1 + 0.95;
+
             double totalStrength = teamStrength1 + teamStrength2;
             double team1Contribution = (teamStrength1 * form1 + teamStrength2 * form2) / totalStrength;
             double team2Contribution = (teamStrength1 * form2 + teamStrength2 * form1) / totalStrength;
-            double winningProbability = (team1Contribution + pitchFactor) / (team1Contribution + team2Contribution + pitchFactor);
+
+            // Include the random factor in the winning probability calculation
+            double winningProbability = (team1Contribution + pitchFactor * randomFactor) / (team1Contribution + team2Contribution + pitchFactor * randomFactor);
+
             return winningProbability * 100;
         }
+
+        */
+
         static void Main(string[] args)
         {
-            
-
 
             string type;
 
-            string team1, team2;
+            string team1;
+
+            string team2;
 
 
             Console.WriteLine("Enter match type(ODI, t20 or a shortmatch)");
-            type = Console.ReadLine();
-
             
+            
+            type=matchtype.GetValidType();
+
+
             List<string> teamNames = LoadTeamNamesFromFile("teamnames.txt");
 
             if (teamNames.Count < 2)

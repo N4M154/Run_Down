@@ -11,7 +11,9 @@ namespace scoreboard
         public string Name { get; set; }
         public string Description { get; set; }
         public string team1;
-        public string team2, bowl, bat;
+        public string team2;
+        public string bowl;
+        public string bat;
 
 
 

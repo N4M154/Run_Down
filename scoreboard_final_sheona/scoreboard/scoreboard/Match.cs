@@ -1,31 +1,27 @@
 ﻿using System;
-using System.IO;
-
 
 namespace scoreboard
 {
     public class Match
-    {   
-
-
-        public int Score { get; set; }
+    {
+        public int Score { get; private set; }
         public string bat;
         public string bowl;
         public double overs;
-        public int innings=1;
-        string team1, team2;
-        string Type;
-      
-        Team team;
-        
+        public int innings = 1;
+        private string team1;
+        private string team2;
+        private string Type;
+        private Team team;
+        private Prediction prediction;
 
-        public Match(string team1, string team2, string type) {
+        public Match(string team1, string team2, string type)
+        {
             this.team1 = team1;
             this.team2 = team2;
             Type = type;
             team = new Team();
-            
-
+            prediction = new Prediction(team1, team2);
 
             if (Type == "ODI")
             {
@@ -35,44 +31,34 @@ namespace scoreboard
             {
                 overs = 20;
             }
-
             else
             {
-                Console.WriteLine("enter number of overs");
-                string input=Console.ReadLine();
+                Console.WriteLine("Enter number of overs:");
+                string input = Console.ReadLine();
                 overs = Convert.ToInt32(input);
-                    
             }
-            
         }
 
         public void Start()
         {
-
             TossGenerate teams = new TossGenerate(team1, team2);
 
             bat = teams.Toss();
             bowl = teams.remain();
 
-
             Console.WriteLine($"\nFirst team to bat will be {bat} and bowl will be {bowl}.\n");
-            
+
             Console.WriteLine($"Inning {this.innings} is starting.\n");
-           
+
             team.DisplayPlayerList(bat);
             Console.WriteLine("\t\t");
             team.DisplayPlayerList(bowl);
             Console.WriteLine($"The batsmen of {bat} are: ");
-            
-            
-
-
-
 
             int target = 0;
 
             Innings innings1 = new Innings(bat, bowl, overs, 1, target);
-             Score=innings1.Startgame(bat, bowl, overs, 1, target);
+            Score = innings1.Startgame(bat, bowl, overs, 1, target);
 
             target = Score + 1;
             Console.WriteLine($"{bat} has set a target of {target} runs for {bowl} to win.");
@@ -81,36 +67,33 @@ namespace scoreboard
             bat = bowl;
             bowl = temp;
             innings++;
-            
-            /*Console.WriteLine($"\nInning {innings} is starting.\n");
-            Console.WriteLine($"For team {bat} the batsmen are: ");*/
-
 
             Innings innings2 = new Innings(bat, bowl, overs, 2, target);
-             Score=innings2.Startgame(bat, bowl, overs, 2, target);
+            Score = innings2.Startgame(bat, bowl, overs, 2, target);
 
             string result = "Match Draw";
-            if (Score == target-1)
+            if (Score == target - 1)
             {
-                result = $"match draw!";
+                result = "Match Draw!";
             }
             else if (Score > target)
             {
-                result = $"team {bat} wins!";
+                result = $"Team {bat} wins!";
+                UpdatePrediction(true); // Team1 wins
             }
-
             else if (Score <= target)
             {
-                result = $"team {bowl} wins!";
+                result = $"Team {bowl} wins!";
+                UpdatePrediction(false); // Team2 wins
             }
             Console.WriteLine(result);
 
-
+            prediction.PredictionDisplay(); // Display the final prediction
         }
 
-       
-     
-
-
+        private void UpdatePrediction(bool team1Won)
+        {
+            prediction.UpdateMatchResult(team1Won);
+        }
     }
 }
