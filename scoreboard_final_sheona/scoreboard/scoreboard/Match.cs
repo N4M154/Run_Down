@@ -53,7 +53,7 @@ namespace scoreboard
             team.DisplayPlayerList(bat);
             Console.WriteLine("\t\t");
             team.DisplayPlayerList(bowl);
-            Console.WriteLine($"The batsmen of {bat} are: ");
+            //Console.WriteLine($"The batsmen of {bat} are: ");
 
             int target = 0;
 

@@ -59,3 +59,10 @@ C:\Users\Dell\Downloads\scoreboard_faiza\scoreboard\scoreboard\obj\Debug\scorebo
 C:\Users\Dell\Downloads\scoreboard_faiza\scoreboard\scoreboard\obj\Debug\scoreboard.csproj.CoreCompileInputs.cache
 C:\Users\Dell\Downloads\scoreboard_faiza\scoreboard\scoreboard\obj\Debug\scoreboard.exe
 C:\Users\Dell\Downloads\scoreboard_faiza\scoreboard\scoreboard\obj\Debug\scoreboard.pdb
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\bin\Debug\scoreboard.exe.config
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\bin\Debug\scoreboard.exe
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\bin\Debug\scoreboard.pdb
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\obj\Debug\scoreboard.csproj.AssemblyReference.cache
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\obj\Debug\scoreboard.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\obj\Debug\scoreboard.exe
+C:\Users\Dell\Downloads\scoreboard_namisa\scoreboard\scoreboard\obj\Debug\scoreboard.pdb
