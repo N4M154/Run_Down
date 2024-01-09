@@ -8,7 +8,7 @@ namespace scoreboard
 {
     
     
-    //unusable for now, may need later or delete it
+       //unusable for now, may need later or delete it
 
 
     public class TossException: Exception
