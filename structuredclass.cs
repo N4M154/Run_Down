@@ -12,10 +12,13 @@ namespace scoreboard
         public Team team=new Team();
         public double over;
         public int[] wicketsPerOver= { 0 };
+        public int[] runPerOver = { 0 };
         public structuredclass(double over)
         {
             this.over = over;
+            int overgraoh = Convert.ToInt32(over);
             wicketsPerOver = new int[Convert.ToInt32(over)];
+            runPerOver = new int[overgraoh];
         }
         //public structuredclass(Team team) { this.team = team; }
         
@@ -156,6 +159,7 @@ namespace scoreboard
                 else if (RunsScored >= 0 && RunsScored <= 6)
                 {
                     Runs += RunsScored;
+                    runPerOver[Convert.ToInt32(Overs)]+=RunsScored;
 
 
 
@@ -187,7 +191,7 @@ namespace scoreboard
                         IsBatsman1Striker = !IsBatsman1Striker;
 
                         Overs++;
-
+                      
                         Runrate = Runs / Overs;
 
                         // Display the score at the end of each over
@@ -231,7 +235,13 @@ namespace scoreboard
            
             return (int[])wicketsPerOver.Clone();
         }
-       
+
+        public int[] GetRunPerOver()
+        {
+
+            return (int[])runPerOver.Clone();
+        }
+
 
 
     }
