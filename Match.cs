@@ -44,6 +44,7 @@ namespace scoreboard
 
         public void Start()
         {
+            Console.Clear();
             TossGenerate teams = new TossGenerate(team1, team2);
 
             bat = teams.Toss();
@@ -51,7 +52,7 @@ namespace scoreboard
 
             Console.WriteLine($"\nFirst team to bat will be {bat} and bowl will be {bowl}.\n");
 
-            Console.WriteLine($"Inning {this.innings} is starting.\n");
+          
 
             team.DisplayPlayerList(bat);
             Console.WriteLine("\t\t");
@@ -65,7 +66,7 @@ namespace scoreboard
 
             target = Score + 1;
             Console.WriteLine($"{bat} has set a target of {target} runs for {bowl} to win.");
-
+           
             string temp = bat;
             bat = bowl;
             bowl = temp;
@@ -79,15 +80,15 @@ namespace scoreboard
             {
                 result = "Match Draw!";
             }
-            else if (Score > target)
+            else if (Score >= target)
             {
                 result = $"Team {bat} wins!";
-                UpdatePrediction(true); // Team1 wins
+             //   UpdatePrediction(true); // Team1 wins
             }
-            else if (Score <= target)
+            else if (Score < target)
             {
                 result = $"Team {bowl} wins!";
-                UpdatePrediction(false); // Team2 wins
+               // UpdatePrediction(false); // Team2 wins
             }
             Console.WriteLine(result);
           

@@ -12,18 +12,21 @@ namespace scoreboard
         public Team team=new Team();
         public double over;
         public int[] wicketsPerOver= { 0 };
+        public int[] boundarybyover = { 0 };
         public int[] runPerOver = { 0 };
         public structuredclass(double over)
         {
+            
             this.over = over;
-            int overgraoh = Convert.ToInt32(over);
+            int overgraph = Convert.ToInt32(over);
             wicketsPerOver = new int[Convert.ToInt32(over)];
-            runPerOver = new int[overgraoh];
+            runPerOver = new int[overgraph];
+            boundarybyover = new int[overgraph];
         }
-        //public structuredclass(Team team) { this.team = team; }
-        
+           
         public int TheFunction(string battingTeam, string bowlingTeam, double overs, int innings, int target)
         {
+         
             Batsman Batsman1, Batsman2, NewBatsman;
             int Runs = 0;
             int Wickets = 0;
@@ -44,6 +47,9 @@ namespace scoreboard
 
             // Choose the first two batsmen automatically
 
+
+            Console.WriteLine("________________________________________________________________________________________");
+            Console.WriteLine($"Inning {innings} is starting.\n");
 
             //using arrray to store player list and getting the names of the batsman from there
             Batsman1 = new Batsman(batsmanList[0]);
@@ -72,9 +78,7 @@ namespace scoreboard
 
             while (Overs < over && Wickets < 11) 
             {
-               
-
-
+              
                 Console.WriteLine("________________________________________________________________________________________");
                 Console.WriteLine("Over: " + (int)Overs + "." + BallsInOver + " | Bowler: " + bowlerList[currentBowlerIndex]);
                 Console.WriteLine("Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver );
@@ -161,7 +165,10 @@ namespace scoreboard
                     Runs += RunsScored;
                     runPerOver[Convert.ToInt32(Overs)]+=RunsScored;
 
-
+                    if(RunsScored==4 || RunsScored == 6)
+                    {
+                        boundarybyover[Convert.ToInt32(Overs)]++;
+                    }
 
                     Balls++;
 
@@ -218,6 +225,8 @@ namespace scoreboard
                     return Runs;
                 }
 
+            
+
 
             }
 
@@ -234,6 +243,12 @@ namespace scoreboard
         {
            
             return (int[])wicketsPerOver.Clone();
+        }
+
+        public int[] GetBoundaryByOver()
+        {
+
+            return (int[])boundarybyover.Clone();
         }
 
         public int[] GetRunPerOver()

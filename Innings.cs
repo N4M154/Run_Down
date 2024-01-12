@@ -12,7 +12,7 @@ namespace scoreboard
         public int Score=0;
         public int target = 0;
         public string wicketinover;
-        structuredclass Structuredclass;
+     
         public Innings(string bat, string bowl, double overs, int innings, int target)
         {
             this.bat = bat;
@@ -20,11 +20,12 @@ namespace scoreboard
             this.overs = overs;
             this.innings = innings;
             this.target = target;
-            Structuredclass=new structuredclass(overs);
+         
         }
        
         public int Startgame(string bat, string bowl, double overs, int innings, int target)
         {   
+            
             structuredclass inningsObj = new structuredclass(overs);
             int runs = inningsObj.TheFunction(bat, bowl, overs, innings, target);
            
@@ -35,19 +36,30 @@ namespace scoreboard
             Score += runs;
             DisplayWicketFallingGraph(inningsObj.GetWicketsPerOver());
             DisplayRunbyOverGraph(inningsObj.GetRunPerOver());
+            DisplayBoundaryGraph(inningsObj.GetBoundaryByOver());
             //Console.WriteLine("Total Runrate of the team is " + Convert.ToDouble(Score / overs));
 
             return Score;
+       
 
 
         }
         public void DisplayWicketFallingGraph(int[] wicketsPerOver)
         {
-            Console.WriteLine("Wicket Falling Graph (Bottom to Top):");
+            Console.WriteLine("------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+          
+            Console.WriteLine("Wicket Falling Graph:");
+
+            Console.WriteLine("------------------------");
 
             for (int over = wicketsPerOver.Length - 1; over >= 0; over--)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+
                 Console.Write($"Over {over + 1}: ");
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
 
                 Console.Write(new string('.', (over + 1) * 2)); // Add leading spaces based on the over number
 
@@ -67,14 +79,19 @@ namespace scoreboard
                 Console.WriteLine(); // Move to the next line for the next over
 
             }
+            Console.ResetColor();
             Console.WriteLine("------------------------");
         }
 
             public void DisplayRunbyOverGraph(int[] runsScored)
             {
+            
+         
+            Console.WriteLine("------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Cricket Run-by-Over Graph");
             Console.WriteLine("------------------------");
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
             // Find the maximum number of runs scored in an over
             int maxRuns = runsScored.Max();
 
@@ -96,20 +113,61 @@ namespace scoreboard
                 Console.WriteLine();
              }
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+
             // Display the over numbers
-             for (int j = 0; j < runsScored.Count(); j++)
+            for (int j = 0; j < runsScored.Count(); j++)
              {
-                Console.Write($"{j + 1}  ");
+                Console.WriteLine($"{j + 1} ");
+               // Console.Write($"(runsScored)");
              }
            
              Console.WriteLine() ;
-             Console.WriteLine("------------------------");
+         
+            Console.ResetColor();
+            Console.WriteLine("------------------------");
         }
 
 
+        static void DisplayBoundaryGraph(int[] boundariesPerOver)
+        {
+            Console.WriteLine("------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Boundary by Over Graph:");
+            Console.WriteLine("------------------------");
+            Console.WriteLine();
 
+            // Find the maximum number of boundaries hit in a single over
+            int maxBoundaries = boundariesPerOver.Max();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            // Display the graph
+            for (int row = maxBoundaries; row > 0; row--)
+            {
+                for (int over = 0; over < boundariesPerOver.Length; over++)
+                {
+                    if (boundariesPerOver[over] >= row)
+                        Console.Write("| ");
+                    else
+                        Console.Write("  "); // Empty space if no boundary in the current row
+                }
+                Console.WriteLine(); // Move to the next row
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            // Print over numbers at the bottom
+            for (int over = 1; over <= boundariesPerOver.Length; over++)
+            {
+                Console.Write($"{over} ");
+            }
 
+            Console.WriteLine();
+
+            Console.ResetColor();
+            Console.WriteLine("------------------------"); // Move to the next line after printing over numbers
         }
+
+
+    }
 
 
         
