@@ -1,104 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Toss
+namespace CricketRunByOverGraph
 {
     class Program
     {
-
         static void Main(string[] args)
         {
+            // Sample data (replace with your actual data)
 
-            Console.WriteLine("Welcome to the Toss Segment!!!!!!!");
+            List<int> runsScored = new List<int> { 5, 3, 5, 20, 2, 0, 5, 4, 11, 3 };
 
-            Console.Write("Enter the name of the first team: ");
-            string team1 = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("Cricket Run-by-Over Graph");
+            Console.WriteLine("------------------------");
 
-            Console.Write("Enter the name of the second team: ");
-            string team2 = Console.ReadLine();
+            // Find the maximum number of runs scored in an over
+            int maxRuns = runsScored.Max();
 
-            Console.Write("Enter a random value for toss: ");
-            if (!int.TryParse(Console.ReadLine(), out int RanValue))
+            // Display the run-by-over graph vertically from bottom to top
+            for (int i = maxRuns; i > 0; i--)
             {
-                Console.WriteLine("Invalid Random value value. Please enter a valid integer.");
-                return;
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                for (int j = 0; j < runsScored.Count; j++)
+                {
+                    if (i <= runsScored[j])
+                    {
+                        Console.Write("|");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("  "); // Adjust spacing for better visualization
+                }
+                Console.WriteLine();
             }
 
-            Custom customRandom = new Custom(RanValue);
-            randomtoss toss = new randomtoss(team1, team2);
-
-            Console.WriteLine($"Tossing the coin.......... (press Enter)");
-            Console.ReadLine();
-
-            string winningTeam = toss.SimulateToss(customRandom);
-
-            Console.WriteLine($"Toss Result: {winningTeam} wins the toss!!!!!!!!!");
-
-            Console.Write("What would you like to choose, bat (B) or bowl (BL): ");
-            string choice = Console.ReadLine();
-
-            if (choice.Equals("B", StringComparison.OrdinalIgnoreCase))
+            // Display the over numbers
+            for (int j = 0; j < runsScored.Count; j++)
             {
-                Console.WriteLine($"{winningTeam} chooses to bat.");
-                Console.WriteLine($"{winningTeam} will be the batting team, and {(team1 == winningTeam ? team2 : team1)} will be the bowling team.");
+                Console.Write($"{j + 1}  ");
             }
-            else if (choice.Equals("BL", StringComparison.OrdinalIgnoreCase))
-            {
-                Console.WriteLine($"{winningTeam} chooses to bowl.");
-                Console.WriteLine($"{winningTeam} will be the bowling team, and {(team1 == winningTeam ? team2 : team1)} will be the batting team.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice. Please choose either 'B' or 'BL'.");
-            }
-
-
-
-
-
-
-            Console.Write("Enter the strength of " + team1 + ": ");
-            double teamStrength1 = double.Parse(Console.ReadLine());
-
-            Console.Write("Enter the strength of " + team2 + ": ");
-            double teamStrength2 = double.Parse(Console.ReadLine());
-
-            Console.Write("Enter the current form of " + team1 + " (0 to 1): ");
-            double form1 = double.Parse(Console.ReadLine());
-
-            Console.Write("Enter the current form of " + team2 + " (0 to 1): ");
-            double form2 = double.Parse(Console.ReadLine());
-
-            Console.Write("Enter pitch conditions factor (0 to 1, 0.5 for neutral): ");
-            double pitchFactor = double.Parse(Console.ReadLine());
-
-
-            Console.WriteLine("Predicted Winning Percentage:");
-            double percentTeam1 = PredictWinPercentage(teamStrength1, teamStrength2, form1, form2, pitchFactor);
-            double percentTeam2 = 100 - percentTeam1;
-
-            Console.WriteLine($"{team1}: {percentTeam1}%");
-            Console.WriteLine($"{team2}: {percentTeam2}%");
-
-
-
-
-
-
+            Console.WriteLine() ;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+       
+            Console.WriteLine("------------------------");
+            Console.ResetColor();
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
         }
     }
-
-
 }
-
-
-
-
-
-
-
-
-
