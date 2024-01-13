@@ -37,6 +37,7 @@ namespace scoreboard
             string team1;
 
             string team2;
+            
 
 
             Console.WriteLine("Enter match type(ODI, t20 or a shortmatch)");
@@ -84,6 +85,9 @@ namespace scoreboard
             match.Start();
 
             
+
+
+
 
             Console.ReadKey();
 
