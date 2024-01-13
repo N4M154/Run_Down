@@ -1,55 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace CricketRunByOverGraph
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        // Sample data representing wicket falls in each over
+        int[] wicketsPerOver = { 0, 1, 0, 2, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0 };
+        Console.ForegroundColor = ConsoleColor.DarkBlue;
+        Console.WriteLine("Wicket Falling Graph (Bottom to Top):");
+
+        for (int over = wicketsPerOver.Length - 1; over >= 0; over--)
         {
-            // Sample data (replace with your actual data)
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write($"Over {over + 1}: ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(new string('.', (over+1) * 2)); // Add leading spaces based on the over number
 
-            List<int> runsScored = new List<int> { 5, 3, 5, 20, 2, 0, 5, 4, 11, 3 };
-
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("Cricket Run-by-Over Graph");
-            Console.WriteLine("------------------------");
-
-            // Find the maximum number of runs scored in an over
-            int maxRuns = runsScored.Max();
-
-            // Display the run-by-over graph vertically from bottom to top
-            for (int i = maxRuns; i > 0; i--)
+            // Print '*' for each wicket fallen in the current over
+            for (int wicket = 0; wicket < wicketsPerOver[over]; wicket++)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                for (int j = 0; j < runsScored.Count; j++)
-                {
-                    if (i <= runsScored[j])
-                    {
-                        Console.Write("|");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-                    Console.Write("  "); // Adjust spacing for better visualization
-                }
-                Console.WriteLine();
+                Console.Write("*");
             }
-
-            // Display the over numbers
-            for (int j = 0; j < runsScored.Count; j++)
+            if (wicketsPerOver[over] == 0)
             {
-                Console.Write($"{j + 1}  ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(new string('.', ((wicketsPerOver.Length) - over) * 2));
             }
-            Console.WriteLine() ;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-       
-            Console.WriteLine("------------------------");
-            Console.ResetColor();
-            Console.WriteLine("\nPress any key to exit...");
-            Console.ReadKey();
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(new string('.', (((wicketsPerOver.Length) - over) * 2)- wicketsPerOver[over]));
+            }
+                Console.WriteLine(); // Move to the next line for the next over
         }
+
+        Console.ReadLine();
     }
+    //static int GetDigitCount(int number)
+    //{
+    //  return (int)Math.Floor(Math.Log10(number) + 1);
+    //}//
 }
