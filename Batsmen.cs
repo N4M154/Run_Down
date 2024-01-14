@@ -4,18 +4,22 @@ namespace scoreboard
 {
     public class Batsman
     {
-        public string Name { get; set; }
-        public int Runs { get; set; }
+        public string Name { get; private set; }
+        public int runs;
 
         public Batsman(string name)
         {
             Name = name;
-            Runs = 0;
+            runs = 0;
         }
 
-        public void AddRuns(int runs)
+        public int Runs
         {
-            Runs += runs;
+            get { return runs; }
+        }
+        public void AddRuns(int score)
+        {
+            runs += score;
         }
     }
 }

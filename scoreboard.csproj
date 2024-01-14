@@ -44,7 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Batsmen.cs" />
+    <Compile Include="DisplayBoundaryGraph.cs" />
+    <Compile Include="DisplayRunByOver.cs" />
+    <Compile Include="DisplayWicketFallingGraph.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="IDisplayBoundaryGraph.cs" />
+    <Compile Include="IDisplayRunByOver.cs" />
+    <Compile Include="IDisplayWicketFallingGraph.cs" />
     <Compile Include="Innings.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="matchtype.cs" />

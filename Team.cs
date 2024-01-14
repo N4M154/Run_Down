@@ -1,29 +1,25 @@
-﻿
-
-using System;
+﻿using System;
 using System.IO;
 
 namespace scoreboard
 {
     public class Team
     {
-
         public string Name { get; set; }
         public string Description { get; set; }
-        public string team1;
-        public string team2;
-        public string bowl;
-        public string bat;
-
-
+        public string Team1 { get; set; }
+        public string Team2 { get; set; }
+        public string Bowl { get; set; }
+        public string Bat { get; set; }
 
         public Team(string team1, string team2)
         {
-            this.team1 = team1;
-            this.team2 = team2;
-
+            Team1 = team1;
+            Team2 = team2;
         }
+
         public Team() { }
+
         public void DisplayPlayerList(string teamName)
         {
             string playerListFileName = $"{teamName}_Team.txt"; // Adjust the file naming convention
@@ -52,15 +48,8 @@ namespace scoreboard
             else
             {
                 Console.WriteLine($"Player list file not found for {teamName}.");
-                return new string[0];
+                return Array.Empty<string>();
             }
         }
-
-
-
-
-
-
-
     }
 }
