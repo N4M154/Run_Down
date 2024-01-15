@@ -1,4 +1,5 @@
-﻿using System;
+﻿using scoreboard;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,111 +7,125 @@ namespace scoreboard
 {
     public class Prediction
     {
-        private string team1;
-        private string team2;
-        private double teamStrength1;
-        private double teamStrength2;
-        private double form1;
-        private double form2;
-        private double pitchFactor;
-        private DateTime predictionDateTime;
-        private int team1WinCount;
-        private int team2WinCount;
 
-        public Prediction(string team1, string team2)
-        {
-            this.team1 = team1;
-            this.team2 = team2;
-            LoadTeamValuesFromFile("team_values.txt");
-            predictionDateTime = DateTime.Now;
-        }
+        public void DisplayPrediction() { 
 
-        private void LoadTeamValuesFromFile(string filePath)
-        {
-            if (File.Exists(filePath))
+        string filePath = "team_values.txt";
+
+            // Ensure the file exists
+            if (!File.Exists(filePath))
             {
-                string[] lines = File.ReadAllLines(filePath);
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(',');
-                    if (parts.Length == 9) // Updated for including historical match results
-                    {
-                        string teamName = parts[0].Trim();
-                        if (teamName == team1 || teamName == team2)
-                        {
-                            if (double.TryParse(parts[1], out teamStrength1) &&
-                                double.TryParse(parts[2], out form1) &&
-                                double.TryParse(parts[3], out form2) &&
-                                double.TryParse(parts[4], out pitchFactor) &&
-                                int.TryParse(parts[5], out team1WinCount) &&
-                                int.TryParse(parts[6], out team2WinCount))
-                            {
-                                if (DateTime.TryParse(parts[7], out predictionDateTime))
-                                {
-                                    break; // Stop searching once values are found
-                                }
-                            }
-                        }
-                    }
-                }
+                Console.WriteLine("Team data file not found.");
+                return;
             }
-        }
 
-        private void SaveTeamValuesToFile(string filePath)
-        {
-            List<string> lines = new List<string>();
-            lines.Add($"{team1},{teamStrength1},{form1},{form2},{pitchFactor},{team1WinCount},{team2WinCount},{predictionDateTime}");
-            lines.Add($"{team2},{teamStrength2},{form1},{form2},{pitchFactor},{team1WinCount},{team2WinCount},{predictionDateTime}");
+    // Read data from the file
+    string[] lines = File.ReadAllLines(filePath);
 
-            File.WriteAllLines(filePath, lines);
-        }
+    // Get user input for team names
+    Console.WriteLine("Enter the names of the two teams to predict (separated by comma):");
+            string userInput = Console.ReadLine();
+    string[] selectedTeams = userInput.Split(',');
 
-        public void UpdateMatchResult(bool team1Won)
-        {
-            if (team1Won)
+    // Find team information for the selected teams
+    TeamInfo teaminfo1 = FindTeamInfo(lines, selectedTeams[0]);
+    TeamInfo teaminfo2 = FindTeamInfo(lines, selectedTeams[1]);
+
+            if (teaminfo1 != null && teaminfo2 != null)
             {
-                team1WinCount++;
+                // Predict winning percentage
+                double winningPercentageTeam1 = PredictWinningPercentage(teaminfo1, teaminfo2);
+    double winningPercentageTeam2 = 100 - winningPercentageTeam1;
+
+    // Display the predictions
+    Console.WriteLine($"Predicted Winning Percentage for {teaminfo1.Name}: {winningPercentageTeam1}%");
+                Console.WriteLine($"Predicted Winning Percentage for {teaminfo2.Name}: {winningPercentageTeam2}%");
             }
             else
-            {
-                team2WinCount++;
-            }
+{
+    Console.WriteLine("One or both of the entered team names were not found in the data file.");
+}
+Console.ReadKey();
 
-            // Recalculate form based on historical results or other criteria if needed
-            form1 = CalculateForm(team1WinCount);
-            form2 = CalculateForm(team2WinCount);
+}
 
-            // Save the updated information back to the file
-            SaveTeamValuesToFile("team_values.txt");
-        }
-
-        private static double PredictWinPercentage(double teamStrength1, double teamStrength2, double form1, double form2, double pitchFactor)
+static TeamInfo FindTeamInfo(string[] lines, string teamName)
+{
+    foreach (var line in lines)
+    {
+        TeamInfo teamInfo = ExtractTeamInfo(line);
+        if (teamInfo.Name.Equals(teamName, StringComparison.OrdinalIgnoreCase))
         {
-            double totalStrength = teamStrength1 + teamStrength2;
-            double team1Contribution = (teamStrength1 * form1 + teamStrength2 * form2) / totalStrength;
-            double team2Contribution = (teamStrength1 * form2 + teamStrength2 * form1) / totalStrength;
-            double winningProbability = (team1Contribution + pitchFactor) / (team1Contribution + team2Contribution + pitchFactor);
-            return winningProbability * 100;
+            return teamInfo;
         }
+    }
+    return null;
+}
 
-        private double CalculateForm(int winCount)
-        {
-            // You can implement your own logic to calculate form based on historical results
-            // For simplicity, you can use a basic formula like: form = totalWins / (totalWins + totalLosses)
-            return winCount / (double)(winCount + (team1WinCount + team2WinCount - winCount));
-        }
+static double PredictWinningPercentage(TeamInfo team1, TeamInfo team2)
+{
+    double team1Score = 0;
+    double team2Score = 0;
 
-        public void PredictionDisplay()
-        {
-            Console.WriteLine($"Prediction generated on: {predictionDateTime}");
+    // Compare wins
+    team1Score += team1.Wins - team2.Wins;
+    team2Score += team2.Wins - team1.Wins;
 
-            Console.WriteLine("Predicted Winning Percentage:");
-            double percentTeam1 = PredictWinPercentage(teamStrength1, teamStrength2, form1, form2, pitchFactor);
-            double percentTeam2 = 100 - percentTeam1;
+    // Compare losses (negative impact)
+    team1Score -= team1.Losses - team2.Losses;
+    team2Score -= team2.Losses - team1.Losses;
 
-            Console.WriteLine($"{team1}: {percentTeam1}%");
-            Console.WriteLine($"{team2}: {percentTeam2}%");
-        }
+    // Compare average collector run
+    team1Score += (team1.AvgCollectorRun - team2.AvgCollectorRun) * 0.1;
+    team2Score += (team2.AvgCollectorRun - team1.AvgCollectorRun) * 0.1;
+
+    // Compare average chases run
+    team1Score += (team1.AvgChasesRun - team2.AvgChasesRun) * 0.1;
+    team2Score += (team2.AvgChasesRun - team1.AvgChasesRun) * 0.1;
+
+    // Compare average run rate
+    team1Score += (team1.AvgRunRate - team2.AvgRunRate) * 0.2;
+    team2Score += (team2.AvgRunRate - team1.AvgRunRate) * 0.2;
+
+    // Normalize scores
+    double normalizedScoreTeam1 = Sigmoid(team1Score);
+    double normalizedScoreTeam2 = Sigmoid(team2Score);
+
+    // Convert normalized scores to percentages
+    double winningPercentageTeam1 = normalizedScoreTeam1 * 100;
+    double winningPercentageTeam2 = normalizedScoreTeam2 * 100;
+
+    return winningPercentageTeam1;
+}
+
+static TeamInfo ExtractTeamInfo(string line)
+{
+    // Split the line into parts
+    string[] parts = line.Split(',');
+
+    // Parse information and create a TeamInfo object
+    return new TeamInfo
+    {
+        Name = parts[0],
+        Wins = int.Parse(parts[1]),
+        Losses = int.Parse(parts[2]),
+        Draws = int.Parse(parts[3]),
+        AvgCollectorRun = double.Parse(parts[4]),
+        AvgChasesRun = double.Parse(parts[5]),
+        AvgRunRate = double.Parse(parts[6])
+    };
+}
+
+// Sigmoid function to normalize scores
+static double Sigmoid(double x)
+{
+    return 1 / (1 + Math.Exp(-x));
+}
+
+          
+
+
+
     }
 }
 
