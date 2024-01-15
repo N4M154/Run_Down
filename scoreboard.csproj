@@ -60,6 +60,7 @@
     <Compile Include="structuredclass.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="CustomRandom.cs" />
+    <Compile Include="TeamInfo.cs" />
     <Compile Include="TossException.cs" />
     <Compile Include="TossGenerate.cs" />
   </ItemGroup>

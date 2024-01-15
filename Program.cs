@@ -58,9 +58,9 @@ namespace scoreboard
             team2 = teamNames[selectedTeam2Index];
 
 
-            Prediction prediction = new Prediction(team1, team2);
-
-            prediction.PredictionDisplay();
+            //Prediction prediction = new Prediction(team1, team2);
+            Prediction prediction = new Prediction();
+            prediction.DisplayPrediction();
 
             Match match = new Match(team1, team2, type);
             match.Start();

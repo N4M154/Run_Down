@@ -15,14 +15,14 @@ namespace scoreboard
         private Dictionary<string, int> bowlerWickets;
 
 
-        public Team team=new Team();
+        public Team team = new Team();
         public double over;
-        public int[] wicketsPerOver= { 0 };
+        public int[] wicketsPerOver = { 0 };
         public int[] boundarybyover = { 0 };
         public int[] runPerOver = { 0 };
         public structuredclass(double over)
         {
-            
+
             this.over = over;
             int overgraph = Convert.ToInt32(over);
             wicketsPerOver = new int[Convert.ToInt32(over)];
@@ -32,22 +32,22 @@ namespace scoreboard
             bowlerWickets = new Dictionary<string, int>();
 
         }
-           
+
         public int TheFunction(string battingTeam, string bowlingTeam, double overs, int innings, int target)
         {
-         
+
             Batsman Batsman1, Batsman2, NewBatsman;
             int Runs = 0;
             int Wickets = 0;
             bool IsBatsman1Striker = true;
-          
+
             double Balls = 0;
             double Overs = 0;
             double Runrate = 0;
             double BallsInOver = 0;
             int RunsScored = 0;
             int inning = innings;
-            int targets=target;
+            int targets = target;
 
 
 
@@ -80,35 +80,35 @@ namespace scoreboard
             batsmen.Add(Batsman1);
             batsmen.Add(Batsman2);
 
-            while (Overs < over && Wickets < 11) 
+            while (Overs < over && Wickets < 11)
             {
-              
+
                 Console.WriteLine("________________________________________________________________________________________");
                 Console.WriteLine("Over: " + (int)Overs + "." + BallsInOver + " | Bowler: " + bowlerList[currentBowlerIndex]);
-                Console.WriteLine("Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver );
+                Console.WriteLine("Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver);
                 Console.WriteLine((IsBatsman1Striker ? "*" : "") + Batsman1.Name + ": " + Batsman1.Runs);
                 Console.WriteLine((!IsBatsman1Striker ? "*" : "") + Batsman2.Name + ": " + Batsman2.Runs);
-               
+
                 Console.WriteLine("________________________________________________________________________________________");
 
                 if (innings == 2 && Runs >= targets)
                 {
-                    
+
                     return Runs;
                 }
 
                 Console.Write("Enter runs (0-6, -1 for wicket fall, -2 to exit the program): ");
                 RunsScored = Convert.ToInt32(Console.ReadLine());
-                
 
-                if (RunsScored==-2)
+
+                if (RunsScored == -2)
                 {
                     break; // Exit the program
                 }
 
-                if (RunsScored==-1)
+                if (RunsScored == -1)
                 {
-                    
+
 
                     Wickets++;
 
@@ -143,23 +143,23 @@ namespace scoreboard
                         BallsInOver = 0;
                         IsBatsman1Striker = !IsBatsman1Striker;
                         Overs++;
-                       
+
                         Runrate = Runs / Overs;
 
                         // Display the score at the end of each over
                         Console.WriteLine("\nEnd of Over " + Overs + ": " + Runs + "/" + Wickets + " | runrate: " + Runrate + "\n");
-                       
+
                         // Change striker at the end of the over
 
                     }
 
 
                 }
-                else if (RunsScored==-3)
+                else if (RunsScored == -3)
                 {
                     Console.WriteLine("It's a wide!");
                 }
-                else if(RunsScored==-4)
+                else if (RunsScored == -4)
                 {
                     Console.WriteLine("It's a free hit!");
                 }
@@ -168,9 +168,9 @@ namespace scoreboard
                 else if (RunsScored >= 0 && RunsScored <= 6)
                 {
                     Runs += RunsScored;
-                    runPerOver[Convert.ToInt32(Overs)]+=RunsScored;
+                    runPerOver[Convert.ToInt32(Overs)] += RunsScored;
 
-                    if(RunsScored==4 || RunsScored == 6)
+                    if (RunsScored == 4 || RunsScored == 6)
                     {
                         boundarybyover[Convert.ToInt32(Overs)]++;
                     }
@@ -203,7 +203,7 @@ namespace scoreboard
                         IsBatsman1Striker = !IsBatsman1Striker;
 
                         Overs++;
-                      
+
                         Runrate = Runs / Overs;
 
                         // Display the score at the end of each over
@@ -232,7 +232,7 @@ namespace scoreboard
                     return Runs;
                 }
 
-                
+
                 DisplayBatsmanRuns(Batsman1);
                 DisplayBatsmanRuns(Batsman2);
 
@@ -243,13 +243,13 @@ namespace scoreboard
 
 
             // Display the final score
-            Console.WriteLine("Final Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver+ " Runrate: "+ Runrate);
+            Console.WriteLine("Final Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver + " Runrate: " + Runrate);
 
-           // Finalscore();
-         
+            // Finalscore();
+
 
             return Runs;
-            
+
 
 
         }
@@ -292,7 +292,7 @@ namespace scoreboard
                 DisplayBatsmanRuns(entry);
             }
 
-            
+
 
             List<Batsman> topScorers = GetTopScorers();
             Console.WriteLine("\nTop Scorers:");
@@ -308,7 +308,7 @@ namespace scoreboard
 
         public int[] GetWicketsPerOver()
         {
-           
+
             return (int[])wicketsPerOver.Clone();
         }
 
