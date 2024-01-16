@@ -1,0 +1,10 @@
+Afghanistan,5,3,2,300,250,6.5
+Australia,4,4,2,280,240,6.0
+Bangladesh,6,2,2,320,260,6.2
+England,7,1,2,340,270,6.8
+India,8,1,1,350,280,7.0
+Netherlands,2,8,0,200,180,4.0
+NewZealand,6,3,1,330,270,6.5
+Pakistan,5,4,1,310,260,6.3
+SouthAfrica,7,2,1,340,280,7.2
+SriLanka,3,6,1,290,240,5.8
