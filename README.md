@@ -1,10 +1,7 @@
-<p align="center">
-  <img src="cricket_logo.png" alt="Cricket Logo" width="300"/>
-</p>
 
-# 🏏 Cricket Scoreboard Simulator
+# 🏏 Run_Down
 
-Welcome to the Cricket Scoreboard Simulator – your go-to application for simulating thrilling cricket matches between your favorite teams! 🎮
+Welcome to our Cricket Scoreboard Simulator – a user-friendly console application for simulating different types of cricket matches between your favorite teams! 🎮
 
 ## 🚀 Quick Start
 
@@ -23,6 +20,9 @@ Welcome to the Cricket Scoreboard Simulator – your go-to application for simul
 - **Team.cs:** Manages team information, including player lists.
 - **Prediction.cs:** Predicts winning percentages based on historical data.
 - **TeamInfo.cs:** Stores essential team statistics for predictions.
+- **DisplayBoundaryGraph.cs:** Displays the graph of boundaries scored in each inning.
+- **DisplayRunByOver.cs** Displays the graph of runs scored in each over in each inning.
+- **DisplayWicketFallingGraph.cs** Displays the graph of wickets fallen in each innings. 
 
 ## 🌐 Team Information
 
@@ -30,7 +30,7 @@ Team details, including player lists, are loaded from text files. Ensure your te
 
 ## 📊 Prediction Feature
 
-Get a sneak peek into the future! Our prediction feature calculates winning percentages based on historical team data loaded from team_values.txt.
+Get a sneak peek into the future! Our prediction feature calculates winning percentages based on historical team data loaded from a preloaded text-file.
 
 ## 🛠️ Customization
 
@@ -38,11 +38,12 @@ Feel the need to tweak? Customize player lists, match types, and more to tailor 
 
 ## 🏏 Contributors
 
-- [Your Name]
-- [Any other contributors]
+- [Faiza Maliat](https://github.com/FaizaM07)
+- [Nabila Sheona](https://github.com/nabila-sheona)
+- [Namisa Najah Raisa](https://github.com/N4N48)
 
-## 📜 License
+## 🌟 Motivation for the project
 
-This project is licensed under the [License Name]. See the LICENSE file for details.
+Run_Down was born out of our passion for cricket and the desire to create a fun and interactive way for cricket enthusiasts to experience the thrill of the game even if it's on a smaller scale. Whether you're a fan of ODI nail-biters, fast-paced T20 clashes, or customized cricket matches, this simulator aims to bring the excitement of cricket to your fingertips.
 
-## 🌟 Experience the excitement of cricket like never before! Let the games begin! 🌟
+## 🌟 Experience the excitement of the game of cricket! Let the games begin! 🌟
