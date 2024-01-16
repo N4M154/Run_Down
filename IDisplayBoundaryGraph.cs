@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace scoreboard
 {
-    public interface IDisplayRunByOver
+    public interface IDisplayBoundaryGraph
     {
-        void DisplayRunbyOverGraph(int[] runsScored);
+        void DisplayBoundarynyGraph(int[] boundariesPerOver);
     }
 }

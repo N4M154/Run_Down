@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace scoreboard
 {
-    public interface IDisplayRunByOver
+    public interface IDisplayWicketFallingGraph
     {
-        void DisplayRunbyOverGraph(int[] runsScored);
+        void DisplayWicketFallingbyGraph(int[] wicketsPerOver);
     }
 }
