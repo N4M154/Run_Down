@@ -20,9 +20,9 @@ Welcome to our Cricket Scoreboard Simulator – a user-friendly console applicat
 - **Team.cs:** Manages team information, including player lists.
 - **Prediction.cs:** Predicts winning percentages based on historical data.
 - **TeamInfo.cs:** Stores essential team statistics for predictions.
-- **DisplayBoundaryGraph.cs:** Displays the graph of boundaries scored in each inning.
-- **DisplayRunByOver.cs** Displays the graph of runs scored in each over in each inning.
-- **DisplayWicketFallingGraph.cs** Displays the graph of wickets fallen in each innings. 
+- **IDisplayBoundaryGraph.cs & DisplayBoundaryGraph.cs:** Displays the graph of boundaries scored in each inning.
+- **IDisplayRunByOver.cs & DisplayRunByOver.cs** Displays the graph of runs scored in each over in each inning.
+- **IDisplayWicketFallingGraph.cs & DisplayWicketFallingGraph.cs** Displays the graph of wickets fallen in each innings. 
 
 ## 🌐 Team Information
 
