@@ -267,9 +267,33 @@ namespace scoreboard
         }
         private List<Batsman> GetTopScorers()
         {
-            int maxRuns = batsmen.Max(b => b.Runs);
-            return batsmen.Where(b => b.Runs == maxRuns).ToList();
-            //return batsmen.OrderByDescending(b => b.Runs).FirstOrDefault();
+        if (batsmen.Count == 0)
+        {
+             return new List<Batsman>(); // Return an empty list if no batsmen
+        }
+
+        int maxRuns = batsmen[0].Runs;
+
+        // Find the maximum runs
+        for (int i = 1; i < batsmen.Count; i++)
+        {
+              if (batsmen[i].Runs > maxRuns)
+              {
+                    maxRuns = batsmen[i].Runs;
+              }
+        }
+
+       // Collect batsmen with the maximum runs
+       List<Batsman> topScorers = new List<Batsman>();
+       for (int i = 0; i < batsmen.Count; i++)
+       {
+             if (batsmen[i].Runs == maxRuns)
+             {
+                    topScorers.Add(batsmen[i]);
+             }
+       }
+
+        return topScorers;
         }
         private void DisplayBatsmanRuns(Batsman batsman)
         {
