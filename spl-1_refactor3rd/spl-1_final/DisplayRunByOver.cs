@@ -13,10 +13,10 @@ namespace scoreboard
 
 
             Console.WriteLine("------------------------");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Cricket Run-by-Over Graph");
             Console.WriteLine("------------------------");
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            //Console.ForegroundColor = ConsoleColor.Cyan;
             // Find the maximum number of runs scored in an over
             int maxRuns = runsScored.Max();
 
@@ -38,7 +38,7 @@ namespace scoreboard
                 Console.WriteLine();
             }
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
 
 
             // Display the over numbers
@@ -50,7 +50,7 @@ namespace scoreboard
 
             Console.WriteLine();
 
-            Console.ResetColor();
+            //Console.ResetColor();
             Console.WriteLine("------------------------");
         }
     }
