@@ -11,7 +11,7 @@ namespace scoreboard
         public void DisplayWicketFallingbyGraph(int[] wicketsPerOver)
         {
             Console.WriteLine("------------------------");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("Wicket Falling Graph:");
 
@@ -19,11 +19,11 @@ namespace scoreboard
 
             for (int over = wicketsPerOver.Length - 1; over >= 0; over--)
             {
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                //Console.ForegroundColor = ConsoleColor.DarkCyan;
 
                 Console.Write($"Over {over + 1}: ");
 
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                //Console.ForegroundColor = ConsoleColor.Cyan;
 
                 Console.Write(new string('.', (over + 1) * 2)); // Add leading spaces based on the over number
 
@@ -43,7 +43,7 @@ namespace scoreboard
                 Console.WriteLine(); // Move to the next line for the next over
 
             }
-            Console.ResetColor();
+            //Console.ResetColor();
             Console.WriteLine("------------------------");
         }
 
