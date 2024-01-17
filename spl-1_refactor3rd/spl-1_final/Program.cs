@@ -57,6 +57,7 @@ namespace scoreboard
             int selectedTeam2Index = GetSelectedTeamIndex(teamNames.Count);
             team2 = teamNames[selectedTeam2Index];
 
+            Console.WriteLine("\n\t\t\t\tWELCOME TO THE MATCH OF "+team1+" AND "+team2+"!");
 
             //Prediction prediction = new Prediction(team1, team2);
             Prediction prediction = new Prediction();
