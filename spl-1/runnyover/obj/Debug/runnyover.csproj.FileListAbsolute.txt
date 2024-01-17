@@ -1,8 +1,0 @@
-D:\sophomore\2-1\runnyover\bin\Debug\runnyover.exe.config
-D:\sophomore\2-1\runnyover\bin\Debug\runnyover.exe
-D:\sophomore\2-1\runnyover\bin\Debug\runnyover.pdb
-D:\sophomore\2-1\runnyover\obj\Debug\runnyover.csproj.AssemblyReference.cache
-D:\sophomore\2-1\runnyover\obj\Debug\runnyover.csproj.SuggestedBindingRedirects.cache
-D:\sophomore\2-1\runnyover\obj\Debug\runnyover.csproj.CoreCompileInputs.cache
-D:\sophomore\2-1\runnyover\obj\Debug\runnyover.exe
-D:\sophomore\2-1\runnyover\obj\Debug\runnyover.pdb

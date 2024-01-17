@@ -1,8 +1,0 @@
-D:\sophomore\2-1\boundarybyover\bin\Debug\boundarybyover.exe.config
-D:\sophomore\2-1\boundarybyover\bin\Debug\boundarybyover.exe
-D:\sophomore\2-1\boundarybyover\bin\Debug\boundarybyover.pdb
-D:\sophomore\2-1\boundarybyover\obj\Debug\boundarybyover.csproj.AssemblyReference.cache
-D:\sophomore\2-1\boundarybyover\obj\Debug\boundarybyover.csproj.SuggestedBindingRedirects.cache
-D:\sophomore\2-1\boundarybyover\obj\Debug\boundarybyover.csproj.CoreCompileInputs.cache
-D:\sophomore\2-1\boundarybyover\obj\Debug\boundarybyover.exe
-D:\sophomore\2-1\boundarybyover\obj\Debug\boundarybyover.pdb
