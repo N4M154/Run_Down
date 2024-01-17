@@ -1,0 +1,8 @@
+D:\sophomore\2-1\wicketgraph\bin\Debug\wicketgraph.exe.config
+D:\sophomore\2-1\wicketgraph\bin\Debug\wicketgraph.exe
+D:\sophomore\2-1\wicketgraph\bin\Debug\wicketgraph.pdb
+D:\sophomore\2-1\wicketgraph\obj\Debug\wicketgraph.csproj.AssemblyReference.cache
+D:\sophomore\2-1\wicketgraph\obj\Debug\wicketgraph.csproj.SuggestedBindingRedirects.cache
+D:\sophomore\2-1\wicketgraph\obj\Debug\wicketgraph.csproj.CoreCompileInputs.cache
+D:\sophomore\2-1\wicketgraph\obj\Debug\wicketgraph.exe
+D:\sophomore\2-1\wicketgraph\obj\Debug\wicketgraph.pdb
