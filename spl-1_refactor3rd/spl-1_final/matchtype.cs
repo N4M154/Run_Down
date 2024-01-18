@@ -8,7 +8,7 @@ namespace scoreboard
         public static string GetValidType()
         {
             bool isValidInput = false;
-            string type = string.Empty;
+            string type = "";
 
             do
             {

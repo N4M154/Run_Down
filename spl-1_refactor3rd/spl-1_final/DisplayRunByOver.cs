@@ -8,17 +8,15 @@ namespace scoreboard
 {
     public class DisplayRunByOver: IDisplayRunByOver
     {
+
         public void DisplayRunbyOverGraph(int[] runsScored)
         {
-
-
-            Console.WriteLine("------------------------");
-            //Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n------------------------");
             Console.WriteLine("Cricket Run-by-Over Graph");
             Console.WriteLine("------------------------");
-            //Console.ForegroundColor = ConsoleColor.Cyan;
+
             // Find the maximum number of runs scored in an over
-            int maxRuns = runsScored.Max();
+            int maxRuns = FindMaxRuns(runsScored);
 
             // Display the run-by-over graph vertically from bottom to top
             for (int i = maxRuns; i > 0; i--)
@@ -38,20 +36,33 @@ namespace scoreboard
                 Console.WriteLine();
             }
 
-            //Console.ForegroundColor = ConsoleColor.Yellow;
-
-
             // Display the over numbers
-            for (int j = 0; j < runsScored.Count(); j++)
+            PrintOverNumbers(runsScored.Length);
+
+            Console.WriteLine("------------------------\n");
+        }
+
+        // Function to find the maximum number of runs scored in an over
+        private int FindMaxRuns(int[] runsScored)
+        {
+            int maxRuns = 0;
+            for (int j = 0; j < runsScored.Length; j++)
+            {
+                if (runsScored[j] > maxRuns)
+                    maxRuns = runsScored[j];
+            }
+            return maxRuns;
+        }
+
+        // Function to print over numbers
+        private void PrintOverNumbers(int totalOvers)
+        {
+            for (int j = 0; j < totalOvers; j++)
             {
                 Console.Write($"{j + 1}  ");
-                // Console.Write($"(runsScored)");
             }
-
             Console.WriteLine();
-
-            //Console.ResetColor();
-            Console.WriteLine("------------------------");
         }
+        
     }
 }

@@ -11,8 +11,11 @@ namespace scoreboard
 
     public class structuredclass
     {
+
+
         private List<Batsman> batsmen;
         private Dictionary<string, int> bowlerWickets;
+
 
 
         public Team team = new Team();
@@ -20,6 +23,7 @@ namespace scoreboard
         public int[] wicketsPerOver = { 0 };
         public int[] boundarybyover = { 0 };
         public int[] runPerOver = { 0 };
+
         public structuredclass(double over)
         {
 
@@ -30,6 +34,8 @@ namespace scoreboard
             boundarybyover = new int[overgraph];
             batsmen = new List<Batsman>();
             bowlerWickets = new Dictionary<string, int>();
+
+
 
         }
 
@@ -59,24 +65,26 @@ namespace scoreboard
 
             // Choose the first two batsmen automatically
 
+            Console.ReadKey();
 
-            Console.WriteLine("________________________________________________________________________________________");
+
+            Console.WriteLine("\n________________________________________________________________________________________");
             Console.WriteLine($"Inning {innings} is starting.\n");
 
             //using arrray to store player list and getting the names of the batsman from there
             Batsman1 = new Batsman(batsmanList[0]);
 
             Batsman2 = new Batsman(batsmanList[1]);
-            Console.WriteLine("---------------------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------------------\n");
 
-            
+
             Console.WriteLine("\nBowlers for this innings:");
             int startIndex = bowlerList.Length - 5 >= 0 ? bowlerList.Length - 5 : 0;
             for (int i = startIndex; i < bowlerList.Length; i++)
             {
                 Console.WriteLine(bowlerList[i]);
             }
-           
+            Console.WriteLine("\n");
 
             int currentBowlerIndex = startIndex;
 
@@ -90,7 +98,7 @@ namespace scoreboard
                 Console.WriteLine("Over: " + (int)Overs + "." + BallsInOver + " | Bowler: " + bowlerList[currentBowlerIndex]);
                 Console.WriteLine("Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver);
 
-                if(innings==2)
+                if (innings == 2)
                 {
                     requiredRuns = target - (Runs);
                     requiredRunRate = (requiredRuns) / (overs - Overs);
@@ -101,7 +109,7 @@ namespace scoreboard
                 Console.WriteLine((IsBatsman1Striker ? "*" : "") + Batsman1.Name + ": " + Batsman1.Runs);
                 Console.WriteLine((!IsBatsman1Striker ? "*" : "") + Batsman2.Name + ": " + Batsman2.Runs);
 
-                Console.WriteLine("________________________________________________________________________________________");
+                Console.WriteLine("________________________________________________________________________________________\n");
 
                 if (innings == 2 && Runs >= targets)
                 {
@@ -133,7 +141,7 @@ namespace scoreboard
                         DisplayBatsmanRuns(Batsman1);
                         NewBatsman = new Batsman(batsmanList[Wickets + 1]);
                         Batsman1 = NewBatsman;
-                        batsmen.Add(Batsman1);
+                        //batsmen.Add(Batsman1);
                         Console.WriteLine("Next batsman: " + Batsman1.Name);
                     }
                     else
@@ -143,7 +151,7 @@ namespace scoreboard
                         DisplayBatsmanRuns(Batsman2);
                         NewBatsman = new Batsman(batsmanList[Wickets + 1]);
                         Batsman2 = NewBatsman;
-                        batsmen.Add(Batsman2);
+                        //batsmen.Add(Batsman2);
                         Console.WriteLine("Next batsman: " + Batsman2.Name);
 
                     }
@@ -255,7 +263,7 @@ namespace scoreboard
 
 
             // Display the final score
-            Console.WriteLine("Final Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver + " Runrate: " + Runrate);
+            Console.WriteLine("\nFinal Score: " + Runs + "/" + Wickets + " for Over: " + Overs + "." + BallsInOver + " Runrate: " + Runrate);
 
             // Finalscore();
 
@@ -265,36 +273,39 @@ namespace scoreboard
 
 
         }
+
         private List<Batsman> GetTopScorers()
         {
-        if (batsmen.Count == 0)
-        {
-             return new List<Batsman>(); // Return an empty list if no batsmen
-        }
+            if (batsmen.Count == 0)
+            {
+                return new List<Batsman>(); // Return an empty list if no batsmen
+            }
 
-        int maxRuns = batsmen[0].Runs;
+            int maxRuns = batsmen[0].Runs;
 
-        // Find the maximum runs
-        for (int i = 1; i < batsmen.Count; i++)
-        {
-              if (batsmen[i].Runs > maxRuns)
-              {
+            // Find the maximum runs
+            for (int i = 1; i < batsmen.Count; i++)
+            {
+                if (batsmen[i].Runs > maxRuns)
+                {
                     maxRuns = batsmen[i].Runs;
-              }
-        }
+                }
+            }
 
-       // Collect batsmen with the maximum runs
-       List<Batsman> topScorers = new List<Batsman>();
-       for (int i = 0; i < batsmen.Count; i++)
-       {
-             if (batsmen[i].Runs == maxRuns)
-             {
+            // Collect batsmen with the maximum runs
+            List<Batsman> topScorers = new List<Batsman>();
+            for (int i = 0; i < batsmen.Count; i++)
+            {
+                if (batsmen[i].Runs == maxRuns)
+                {
                     topScorers.Add(batsmen[i]);
-             }
-       }
+                }
+            }
 
-        return topScorers;
+            return topScorers;
         }
+
+
         private void DisplayBatsmanRuns(Batsman batsman)
         {
             Console.WriteLine($"{batsman.Name}'s runs: {batsman.Runs}");
@@ -314,12 +325,14 @@ namespace scoreboard
 
         public void Finalscore()
         {
-            Console.WriteLine($"\nWickets taken by the bowlers: \n");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Performance by innings");
+            Console.WriteLine("---------------------------------");
             foreach (var entry in bowlerWickets)
             {
 
 
-                Console.WriteLine($"{entry.Key}: {entry.Value} wicket" + (entry.Value <= 1 ? "." : "s."));
+                Console.WriteLine($"\nWickets taken by the bowlers: {entry.Key}: {entry.Value} wicket" + (entry.Value <= 1 ? "." : "s."));
             }
             Console.WriteLine("\nBatsman score:");
 
@@ -337,27 +350,45 @@ namespace scoreboard
                 Console.WriteLine($"{batsman.Name}: {batsman.Runs} runs.");
             }
             /*Batsman topScorer = GetTopScorer();
-            Console.WriteLine($"\nTop Scorer: {topScorer.Name} with {topScorer.Runs} runs.");*/
-        }
+            Console.WriteLine($"\nTop Scorer: {topScorer.Name} with {topScorer.Runs} runs.");
+        */}
 
-
+               
 
         public int[] GetWicketsPerOver()
         {
+            int[] clonedArray = new int[wicketsPerOver.Length];
 
-            return (int[])wicketsPerOver.Clone();
+            for (int i = 0; i < wicketsPerOver.Length; i++)
+            {
+                clonedArray[i] = wicketsPerOver[i];
+            }
+
+            return clonedArray;
         }
 
         public int[] GetBoundaryByOver()
         {
+            int[] clonedArray = new int[boundarybyover.Length];
 
-            return (int[])boundarybyover.Clone();
+            for (int i = 0; i < boundarybyover.Length; i++)
+            {
+                clonedArray[i] = boundarybyover[i];
+            }
+
+            return clonedArray;
         }
 
         public int[] GetRunPerOver()
         {
+            int[] clonedArray = new int[runPerOver.Length];
 
-            return (int[])runPerOver.Clone();
+            for (int i = 0; i < runPerOver.Length; i++)
+            {
+                clonedArray[i] = runPerOver[i];
+            }
+
+            return clonedArray;
         }
 
 

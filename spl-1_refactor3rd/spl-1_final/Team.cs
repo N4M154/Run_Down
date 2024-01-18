@@ -48,7 +48,7 @@ namespace scoreboard
             else
             {
                 Console.WriteLine($"Player list file not found for {teamName}.");
-                return Array.Empty<string>();
+                return new string[0];
             }
         }
     }
