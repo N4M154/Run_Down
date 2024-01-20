@@ -58,7 +58,7 @@ static TeamInfo FindTeamInfo(string[] lines, string teamName)
     }
     return null;
 }
-
+//prediction winning percentage
 static double PredictWinningPercentage(TeamInfo team1, TeamInfo team2)
 {
     double team1Score = 0;
