@@ -33,16 +33,16 @@ Get a sneak peek into the future! Our prediction feature calculates winning perc
 
 ## 📈 Graph
 
-• Generates a Wicket Falling Graph by over.
-• Can also Generate graph for collected run in each over.
-• In addition, there is also a graph for Boundary(4/6 runs) per over.
+**• Generates a Wicket Falling Graph by over.
+**• Can also Generate graph for collected run in each over.
+**• In addition, there is also a graph for Boundary(4/6 runs) per over.
 
 ## 🪙 Toss Generation
 
-• Simulates a fair toss.
-• Manages user input validation and determines the outcome. 
-• Detemines the team which will choose between batting or bowling first 
-• The toss is generated using a custom algorithm, providing a simple and effective method
+**• Simulates a fair toss.
+**• Manages user input validation and determines the outcome. 
+**• Detemines the team which will choose between batting or bowling first 
+**• The toss is generated using a custom algorithm, providing a simple and effective method
 
 ## 🛠️ Customization
 
