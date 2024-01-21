@@ -31,6 +31,19 @@ Team details, including player lists, are loaded from text files. Ensure your te
 
 Get a sneak peek into the future! Our prediction feature calculates winning percentages based on historical team data loaded from a preloaded text-file.
 
+## 📈 Graph
+
+• Generates a Wicket Falling Graph by over.
+• Can also Generate graph for collected run in each over.
+• In addition, there is also a graph for Boundary(4/6 runs) per over.
+
+## 🪙 Toss Generation
+
+• Simulates a fair toss.
+• Manages user input validation and determines the outcome. 
+• Detemines the team which will choose between batting or bowling first 
+• The toss is generated using a custom algorithm, providing a simple and effective method
+
 ## 🛠️ Customization
 
 Feel the need to tweak? Customize player lists, match types, and more to tailor the simulation to your liking.
