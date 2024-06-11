@@ -52,7 +52,7 @@ Feel the need to tweak? Customize player lists, match types, and more to tailor 
 
 - [Faiza Maliat](https://github.com/FaizaM07)
 - [Nabila Sheona](https://github.com/nabila-sheona)
-- [Namisa Najah Raisa](https://github.com/N4N48)
+- [Namisa Najah Raisa](https://github.com/N4M154)
 
 ## 🌟 Motivation for the project
 
